@@ -3,13 +3,15 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+interface SearchBarProps {
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+}
 
+const SearchBar = ({ searchQuery, onSearchChange }: SearchBarProps) => {
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      console.log("Searching for:", searchQuery);
-      // TODO: Implement search functionality
+      // Search is handled by parent component through onSearchChange
     }
   };
 
@@ -28,7 +30,7 @@ const SearchBar = () => {
             type="text"
             placeholder="Search government schemes (e.g., PM Kisan, Housing schemes...)"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => onSearchChange(e.target.value)}
             onKeyPress={handleKeyPress}
             className="pl-10 pr-4 py-3 text-base bg-search-bg border-border focus:ring-2 focus:ring-primary focus:border-primary"
           />
@@ -47,7 +49,7 @@ const SearchBar = () => {
         {["PM Kisan", "Housing", "Employment", "Education"].map((term) => (
           <button
             key={term}
-            onClick={() => setSearchQuery(term)}
+            onClick={() => onSearchChange(term)}
             className="text-accent hover:text-accent/80 hover:underline"
           >
             {term}

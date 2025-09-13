@@ -1,8 +1,11 @@
-import { useState } from "react";
 import { User, FileText, Calendar } from "lucide-react";
 
-const Navigation = () => {
-  const [activeTab, setActiveTab] = useState("schemes");
+interface NavigationProps {
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+}
+
+const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
 
   const tabs = [
     { id: "schemes", label: "My Schemes", icon: FileText },
@@ -31,10 +34,10 @@ const Navigation = () => {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                  onClick={() => onTabChange(tab.id)}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors relative ${
                     isActive
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-primary text-primary-foreground font-bold"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                   }`}
                 >
