@@ -47,6 +47,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Custom YojnaSathi colors
+        "gov-blue": "hsl(var(--gov-blue))",
+        "gov-blue-light": "hsl(var(--gov-blue-light))",
+        "gov-blue-bg": "hsl(var(--gov-blue-bg))",
+        "scheme-card": "hsl(var(--scheme-card))",
+        "scheme-card-hover": "hsl(var(--scheme-card-hover))",
+        "search-bg": "hsl(var(--search-bg))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
