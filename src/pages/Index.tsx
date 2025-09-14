@@ -6,6 +6,8 @@ import MySchemes from "@/components/MySchemes";
 import MyAppointments from "@/components/MyAppointments";
 import MyProfile from "@/components/MyProfile";
 import SchemeDetail from "@/components/SchemeDetail";
+import ApplyForm from "@/components/ApplyForm";
+import ConfirmationScreen from "@/components/ConfirmationScreen";
 import { useToast } from "@/hooks/use-toast";
 
 interface Scheme {
@@ -25,6 +27,8 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState("schemes");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedScheme, setSelectedScheme] = useState<Scheme | null>(null);
+  const [showApplyForm, setShowApplyForm] = useState(false);
+  const [appointmentDetails, setAppointmentDetails] = useState<any>(null);
 
   const defaultSchemes: Scheme[] = [
     {
@@ -85,14 +89,57 @@ const Index = () => {
 
   const handleBackToSchemes = () => {
     setSelectedScheme(null);
+    setShowApplyForm(false);
+    setAppointmentDetails(null);
+  };
+
+  const handleApplyClick = (scheme: Scheme) => {
+    setSelectedScheme(scheme);
+    setShowApplyForm(true);
+  };
+
+  const handleBackToSchemeDetail = () => {
+    setShowApplyForm(false);
+  };
+
+  const handleConfirmAppointment = (details: any) => {
+    setAppointmentDetails(details);
+    setShowApplyForm(false);
+  };
+
+  const handleGoHome = () => {
+    setActiveTab("appointments");
+    setSelectedScheme(null);
+    setShowApplyForm(false);
+    setAppointmentDetails(null);
   };
 
   const renderContent = () => {
+    if (appointmentDetails) {
+      return (
+        <ConfirmationScreen
+          appointmentDetails={appointmentDetails}
+          onGoHome={handleGoHome}
+        />
+      );
+    }
+
+    if (showApplyForm && selectedScheme) {
+      return (
+        <ApplyForm
+          schemeName={selectedScheme.title}
+          onBack={handleBackToSchemeDetail}
+          onConfirm={handleConfirmAppointment}
+        />
+      );
+    }
+
     if (selectedScheme) {
       return (
         <SchemeDetail 
           scheme={selectedScheme} 
           onBack={handleBackToSchemes}
+          onApply={handleApplyClick}
         />
       );
     }

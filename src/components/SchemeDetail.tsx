@@ -18,9 +18,10 @@ interface Scheme {
 interface SchemeDetailProps {
   scheme: Scheme;
   onBack: () => void;
+  onApply: (scheme: Scheme) => void;
 }
 
-const SchemeDetail = ({ scheme, onBack }: SchemeDetailProps) => {
+const SchemeDetail = ({ scheme, onBack, onApply }: SchemeDetailProps) => {
   return (
     <div className="max-w-4xl">
       {/* Back Button */}
@@ -57,7 +58,10 @@ const SchemeDetail = ({ scheme, onBack }: SchemeDetailProps) => {
             </Badge>
           </div>
           {scheme.status === "Live" && (
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8">
+            <Button 
+              onClick={() => onApply(scheme)}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8"
+            >
               Apply Now
             </Button>
           )}
@@ -136,7 +140,10 @@ const SchemeDetail = ({ scheme, onBack }: SchemeDetailProps) => {
       {/* Apply Button for mobile */}
       {scheme.status === "Live" && (
         <div className="mt-8 md:hidden">
-          <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3">
+          <Button 
+            onClick={() => onApply(scheme)}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3"
+          >
             Apply Now
           </Button>
         </div>
