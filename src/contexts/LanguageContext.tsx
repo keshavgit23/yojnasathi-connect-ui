@@ -212,6 +212,87 @@ const translations: Translations = {
     hi: 'पास के eSeva/CSC केंद्र खोजने के लिए अपना स्थान चुनें',
     gu: 'નજીકના eSeva/CSC કેન્દ્રો શોધવા માટે તમારું સ્થાન પસંદ કરો',
     ta: 'அருகிலுள்ள eSeva/CSC மையங்களைக் கண்டறிய உங்கள் இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்'
+  },
+
+  // Location Selection
+  'location.selectState': {
+    en: 'Select State',
+    mr: 'राज्य निवडा',
+    hi: 'राज्य चुनें',
+    gu: 'રાજ્ય પસંદ કરો',
+    ta: 'மாநிலம் தேர்ந்தெடுக்கவும்'
+  },
+  'location.selectDistrict': {
+    en: 'Select District',
+    mr: 'जिल्हा निवडा',
+    hi: 'जिला चुनें',
+    gu: 'જિલ્લો પસંદ કરો',
+    ta: 'மாவட்டம் தேர்ந்தெடுக்கவும்'
+  },
+  'location.selectTaluka': {
+    en: 'Select Taluka',
+    mr: 'तालुका निवडा',
+    hi: 'तालुका चुनें',
+    gu: 'તાલુકો પસંદ કરો',
+    ta: 'தாலுகா தேர்ந்தெடுக்கவும்'
+  },
+  'location.state': {
+    en: 'State',
+    mr: 'राज्य',
+    hi: 'राज्य',
+    gu: 'રાજ્ય',
+    ta: 'மாநிலம்'
+  },
+  'location.district': {
+    en: 'District',
+    mr: 'जिल्हा',
+    hi: 'जिला',
+    gu: 'જિલ્લો',
+    ta: 'மாவட்டம்'
+  },
+  'location.taluka': {
+    en: 'Taluka',
+    mr: 'तालुका',
+    hi: 'तालुका',
+    gu: 'તાલુકો',
+    ta: 'தாலுகா'
+  },
+  'location.selectYourLocation': {
+    en: 'Select Your Location',
+    mr: 'तुमचे स्थान निवडा',
+    hi: 'अपना स्थान चुनें',
+    gu: 'તમારું સ્થાન પસંદ કરો',
+    ta: 'உங்கள் இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்'
+  },
+
+  // Date Time Selection
+  'dateTime.chooseDateTime': {
+    en: 'Choose Appointment Date & Time',
+    mr: 'भेटीची तारीख आणि वेळ निवडा',
+    hi: 'अपॉइंटमेंट की तारीख और समय चुनें',
+    gu: 'એપોઇન્ટમેન્ટની તારીખ અને સમય પસંદ કરો',
+    ta: 'சந்திப்பு தேதி மற்றும் நேரத்தைத் தேர்ந்தெடுக்கவும்'
+  },
+  'dateTime.selectDate': {
+    en: 'Select Date',
+    mr: 'तारीख निवडा',
+    hi: 'तारीख चुनें',
+    gu: 'તારીખ પસંદ કરો',
+    ta: 'தேதியைத் தேர்ந்தெடுக்கவும்'
+  },
+  'dateTime.pickDate': {
+    en: 'Pick a date',
+    mr: 'तारीख निवडा',
+    hi: 'तारीख चुनें',
+    gu: 'તારીખ પસંદ કરો',
+    ta: 'தேதியைத் தேர்ந்தெடுக்கவும்'
+  },
+  'dateTime.selectTimeSlot': {
+    en: 'Select Time Slot',
+    mr: 'वेळ स्लॉट निवडा',
+    hi: 'समय स्लॉट चुनें',
+    gu: 'ટાઇમ સ્લોટ પસંદ કરો',
+    ta: 'நேர இடைவெளியைத் தேர்ந்தெடুக்கவும்'
   }
 };
 

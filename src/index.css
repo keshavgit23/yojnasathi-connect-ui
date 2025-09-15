@@ -8,41 +8,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* YojnaSathi Design System - Light Blue Theme */
-    --background: 200 100% 97%;
-    --foreground: 210 40% 15%;
+    /* YojnaSathi Design System - Bold Orange Theme */
+    --background: 28 100% 96%;
+    --foreground: 20 40% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 40% 15%;
+    --card-foreground: 20 40% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 15%;
+    --popover-foreground: 20 40% 15%;
 
-    --primary: 210 85% 25%;
+    --primary: 16 90% 48%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 200 50% 90%;
-    --secondary-foreground: 210 40% 15%;
+    --secondary: 28 60% 90%;
+    --secondary-foreground: 20 40% 15%;
 
-    --muted: 200 30% 95%;
-    --muted-foreground: 210 20% 50%;
+    --muted: 28 30% 95%;
+    --muted-foreground: 20 20% 50%;
 
-    --accent: 195 100% 45%;
+    --accent: 24 100% 55%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 200 30% 88%;
+    --border: 28 30% 88%;
     --input: 0 0% 100%;
-    --ring: 210 85% 25%;
+    --ring: 16 90% 48%;
     
     /* Custom YojnaSathi tokens */
-    --gov-blue: 210 85% 25%;
-    --gov-blue-light: 200 50% 90%;
-    --gov-blue-bg: 200 100% 97%;
+    --gov-blue: 16 90% 48%;
+    --gov-blue-light: 28 60% 90%;
+    --gov-blue-bg: 28 100% 96%;
     --scheme-card: 0 0% 100%;
-    --scheme-card-hover: 200 30% 98%;
+    --scheme-card-hover: 28 30% 98%;
     --search-bg: 0 0% 100%;
 
     --radius: 0.5rem;

@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface DateTimeSelectionProps {
   onDateTimeSelect: (date: Date, time: string) => void;
@@ -17,12 +18,13 @@ interface DateTimeSelectionProps {
 const DateTimeSelection = ({ onDateTimeSelect, selectedDate, selectedTime }: DateTimeSelectionProps) => {
   const [date, setDate] = useState<Date | undefined>(selectedDate);
   const [time, setTime] = useState<string>(selectedTime || "");
+  const { t } = useLanguage();
 
   const timeSlots = [
-    "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
-    "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM",
-    "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM",
-    "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM"
+    "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM",
+    "12:00 PM", "12:15 PM", "12:30 PM", "12:45 PM", "01:00 PM", "01:15 PM", "01:30 PM", "01:45 PM",
+    "02:00 PM", "02:15 PM", "02:30 PM", "02:45 PM", "03:00 PM", "03:15 PM", "03:30 PM", "03:45 PM",
+    "04:00 PM", "04:15 PM", "04:30 PM", "04:45 PM", "05:00 PM", "05:15 PM", "05:30 PM", "05:45 PM", "06:00 PM"
   ];
 
   const handleDateSelect = (selectedDate: Date | undefined) => {
@@ -46,13 +48,13 @@ const DateTimeSelection = ({ onDateTimeSelect, selectedDate, selectedTime }: Dat
       <CardHeader>
         <CardTitle className="text-xl font-semibold text-foreground flex items-center">
           <CalendarIcon className="w-5 h-5 mr-2" />
-          Choose Appointment Date & Time
+          {t("dateTime.chooseDateTime")}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Date Selection */}
         <div>
-          <Label className="text-sm font-medium text-foreground mb-2 block">Select Date</Label>
+          <Label className="text-sm font-medium text-foreground mb-2 block">{t("dateTime.selectDate")}</Label>
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -63,7 +65,7 @@ const DateTimeSelection = ({ onDateTimeSelect, selectedDate, selectedTime }: Dat
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : <span>Pick a date</span>}
+                {date ? format(date, "PPP") : <span>{t("dateTime.pickDate")}</span>}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
@@ -84,9 +86,9 @@ const DateTimeSelection = ({ onDateTimeSelect, selectedDate, selectedTime }: Dat
           <div>
             <Label className="text-sm font-medium text-foreground mb-3 block flex items-center">
               <Clock className="w-4 h-4 mr-2" />
-              Select Time Slot
+              {t("dateTime.selectTimeSlot")}
             </Label>
-            <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
               {timeSlots.map((slot) => (
                 <Button
                   key={slot}
