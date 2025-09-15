@@ -9,6 +9,7 @@ import SchemeDetail from "@/components/SchemeDetail";
 import ApplyForm from "@/components/ApplyForm";
 import ConfirmationScreen from "@/components/ConfirmationScreen";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Scheme {
   id: string;
@@ -20,15 +21,30 @@ interface Scheme {
   deadline: string;
   status: "Live" | "Over";
   eligibility: string;
+  schemeKey?: string;
+}
+
+interface Appointment {
+  id: string;
+  schemeName: string;
+  schemeKey?: string;
+  centerName: string;
+  date: string;
+  time: string;
+  status: string;
+  appointmentType: string;
+  charges: string;
 }
 
 const Index = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState("schemes");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedScheme, setSelectedScheme] = useState<Scheme | null>(null);
   const [showApplyForm, setShowApplyForm] = useState(false);
   const [appointmentDetails, setAppointmentDetails] = useState<any>(null);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   const defaultSchemes: Scheme[] = [
     {
@@ -40,7 +56,8 @@ const Index = () => {
       amount: "₹1,500 per month",
       deadline: "Dec 31, 2024",
       status: "Live",
-      eligibility: "Women residents of Maharashtra aged between 21-65 years with annual family income less than ₹2.5 lakh"
+      eligibility: "Women residents of Maharashtra aged between 21-65 years with annual family income less than ₹2.5 lakh",
+      schemeKey: "scheme.mazhiLadkiBahin"
     },
     {
       id: "2",
@@ -51,7 +68,8 @@ const Index = () => {
       amount: "₹6,000 per year",
       deadline: "Ongoing",
       status: "Live",
-      eligibility: "Small and marginal farmers with cultivable land up to 2 hectares"
+      eligibility: "Small and marginal farmers with cultivable land up to 2 hectares",
+      schemeKey: "scheme.pmKisan"
     },
     {
       id: "3",
@@ -62,7 +80,8 @@ const Index = () => {
       amount: "Various benefits",
       deadline: "Mar 31, 2025",
       status: "Live",
-      eligibility: "Registered construction workers with active membership in labor board"
+      eligibility: "Registered construction workers with active membership in labor board",
+      schemeKey: "scheme.majurKamgar"
     },
     {
       id: "4",
@@ -73,7 +92,8 @@ const Index = () => {
       amount: "Up to ₹2.67 lakh subsidy",
       deadline: "Dec 31, 2024",
       status: "Over",
-      eligibility: "Families without pucca house, annual income criteria based on category"
+      eligibility: "Families without pucca house, annual income criteria based on category",
+      schemeKey: "scheme.pmAwas"
     }
   ];
 
@@ -103,6 +123,22 @@ const Index = () => {
   };
 
   const handleConfirmAppointment = (details: any) => {
+    // Create new appointment
+    const newAppointment: Appointment = {
+      id: (appointments.length + 1).toString(),
+      schemeName: details.schemeName,
+      schemeKey: selectedScheme?.schemeKey,
+      centerName: details.cscName,
+      date: details.date,
+      time: details.time,
+      status: "Confirmed",
+      appointmentType: details.appointmentType,
+      charges: details.charge
+    };
+    
+    // Add to appointments list
+    setAppointments(prev => [...prev, newAppointment]);
+    
     setAppointmentDetails(details);
     setShowApplyForm(false);
   };
@@ -148,7 +184,7 @@ const Index = () => {
       case "schemes":
         return <MySchemes onSchemeClick={handleSchemeClick} />;
       case "appointments":
-        return <MyAppointments />;
+        return <MyAppointments appointments={appointments} />;
       case "profile":
         return <MyProfile />;
       default:

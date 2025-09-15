@@ -1,4 +1,6 @@
 import { User, FileText, Calendar } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavigationProps {
   activeTab: string;
@@ -6,11 +8,12 @@ interface NavigationProps {
 }
 
 const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
+  const { t } = useLanguage();
 
   const tabs = [
-    { id: "schemes", label: "My Schemes", icon: FileText },
-    { id: "appointments", label: "My Appointments", icon: Calendar },
-    { id: "profile", label: "My Profile", icon: User },
+    { id: "schemes", label: t("nav.mySchemes"), icon: FileText },
+    { id: "appointments", label: t("nav.myAppointments"), icon: Calendar },
+    { id: "profile", label: t("nav.myProfile"), icon: User },
   ];
 
   return (
@@ -22,11 +25,15 @@ const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold text-primary">YojnaSathi</span>
+            <span className="text-xl font-bold text-primary">{t("nav.brandName")}</span>
           </div>
 
-          {/* Navigation Tabs */}
-          <div className="flex space-x-1">
+          {/* Navigation Tabs and Language Switcher */}
+          <div className="flex items-center space-x-4">
+            <LanguageSwitcher />
+            
+            {/* Navigation Tabs */}
+            <div className="flex space-x-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -46,6 +53,7 @@ const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                 </button>
               );
             })}
+            </div>
           </div>
         </div>
       </div>
