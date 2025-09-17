@@ -1,5 +1,6 @@
 import SchemeCard from "./SchemeCard";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Scheme {
   id: string;
@@ -18,6 +19,8 @@ interface MySchemesProps {
 }
 
 const MySchemes = ({ onSchemeClick }: MySchemesProps) => {
+  const { t } = useLanguage();
+  
   const schemes: Scheme[] = [
     {
       id: "1",
@@ -67,7 +70,7 @@ const MySchemes = ({ onSchemeClick }: MySchemesProps) => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-foreground mb-6">My Schemes</h2>
+      <h2 className="text-2xl font-semibold text-foreground mb-6">{t('mySchemes.title')}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {schemes.map((scheme) => (
           <div key={scheme.id} className="relative">
@@ -85,7 +88,7 @@ const MySchemes = ({ onSchemeClick }: MySchemesProps) => {
                 onClick={() => onSchemeClick(scheme)}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
               >
-                View Details
+                {t('mySchemes.viewDetails')}
               </Button>
             </div>
           </div>

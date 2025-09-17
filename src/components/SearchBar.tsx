@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SearchBarProps {
   searchQuery: string;
@@ -9,6 +10,8 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ searchQuery, onSearchChange }: SearchBarProps) => {
+  const { t } = useLanguage();
+  
   const handleSearch = () => {
     if (searchQuery.trim()) {
       // Search is handled by parent component through onSearchChange
@@ -28,7 +31,7 @@ const SearchBar = ({ searchQuery, onSearchChange }: SearchBarProps) => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
           <Input
             type="text"
-            placeholder="Search government schemes (e.g., PM Kisan, Housing schemes...)"
+            placeholder={t('search.placeholder')}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -39,13 +42,13 @@ const SearchBar = ({ searchQuery, onSearchChange }: SearchBarProps) => {
           onClick={handleSearch}
           className="ml-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground"
         >
-          Search
+          {t('search.button')}
         </Button>
       </div>
       
       {/* Popular searches */}
       <div className="mt-3 flex flex-wrap gap-2 text-sm">
-        <span className="text-muted-foreground">Popular:</span>
+        <span className="text-muted-foreground">{t('search.popular')}</span>
         {["PM Kisan", "Housing", "Employment", "Education"].map((term) => (
           <button
             key={term}

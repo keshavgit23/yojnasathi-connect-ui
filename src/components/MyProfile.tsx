@@ -2,8 +2,10 @@ import { User, Calendar, ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MyProfile = () => {
+  const { t } = useLanguage();
   const [isCompletedOpen, setIsCompletedOpen] = useState(false);
   const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
 
@@ -39,7 +41,7 @@ const MyProfile = () => {
 
   return (
     <div className="max-w-2xl">
-      <h2 className="text-2xl font-semibold text-foreground mb-6">My Profile</h2>
+      <h2 className="text-2xl font-semibold text-foreground mb-6">{t('profile.title')}</h2>
       
       {/* Profile Section */}
       <div className="text-center mb-8">
@@ -51,15 +53,15 @@ const MyProfile = () => {
       {/* User Information Card */}
       <Card className="mb-6">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-foreground">User Information</CardTitle>
+          <CardTitle className="text-xl font-semibold text-foreground">{t('profile.userInformation')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-muted-foreground">Name</label>
+            <label className="text-sm font-medium text-muted-foreground">{t('profile.name')}</label>
             <p className="text-foreground">Rahul Patil</p>
           </div>
           <div>
-            <label className="text-sm font-medium text-muted-foreground">Address</label>
+            <label className="text-sm font-medium text-muted-foreground">{t('profile.address')}</label>
             <p className="text-foreground">At. Post Varsus, Tal. Sakri, Dist. Dhule</p>
           </div>
         </CardContent>
@@ -72,7 +74,7 @@ const MyProfile = () => {
             <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg font-semibold text-foreground">
-                  Completed Appointments
+                  {t('profile.completedAppointments')}
                 </CardTitle>
                 {isCompletedOpen ? (
                   <ChevronUp className="w-5 h-5 text-muted-foreground" />
@@ -95,7 +97,7 @@ const MyProfile = () => {
                       </div>
                     </div>
                     <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-200">
-                      {appointment.status}
+                      {t('profile.completed')}
                     </span>
                   </div>
                 ))}
@@ -112,7 +114,7 @@ const MyProfile = () => {
             <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg font-semibold text-foreground">
-                  Upcoming Appointments
+                  {t('profile.upcomingAppointments')}
                 </CardTitle>
                 {isUpcomingOpen ? (
                   <ChevronUp className="w-5 h-5 text-muted-foreground" />
@@ -135,7 +137,7 @@ const MyProfile = () => {
                       </div>
                     </div>
                     <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full dark:bg-blue-900 dark:text-blue-200">
-                      Scheduled
+                      {t('profile.scheduled')}
                     </span>
                   </div>
                 ))}

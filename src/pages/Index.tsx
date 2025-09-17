@@ -193,11 +193,10 @@ const Index = () => {
             {/* Hero Section with Search */}
             <section className="py-12 text-center">
               <h1 className="text-4xl font-bold text-foreground mb-4">
-                Welcome to <span className="text-primary">YojnaSathi</span>
+                {t('home.welcome')} <span className="text-primary">{t('nav.brandName')}</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Your trusted companion to discover and access government schemes. 
-                Find the right schemes for you and your family.
+                {t('home.subtitle')}
               </p>
               
               {/* Search Bar */}
@@ -207,9 +206,9 @@ const Index = () => {
             {/* Default Schemes Section */}
             <section className="py-8">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-foreground">Popular Schemes</h2>
+                <h2 className="text-2xl font-semibold text-foreground">{t('home.popularSchemes')}</h2>
                 <button className="text-primary hover:text-primary/80 font-medium">
-                  View All →
+                  {t('home.viewAll')}
                 </button>
               </div>
               
@@ -217,7 +216,7 @@ const Index = () => {
                 {filteredSchemes.map((scheme) => (
                   <SchemeCard
                     key={scheme.id}
-                    title={scheme.title}
+                    title={scheme.schemeKey ? t(scheme.schemeKey) : scheme.title}
                     description={scheme.description}
                     category={scheme.category}
                     beneficiaries={scheme.beneficiaries}
@@ -236,9 +235,9 @@ const Index = () => {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl">🔍</span>
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">Search Schemes</h3>
+                  <h3 className="font-semibold text-foreground mb-2">{t('home.searchSchemes')}</h3>
                   <p className="text-muted-foreground text-sm">
-                    Find government schemes tailored to your needs
+                    {t('home.searchDescription')}
                   </p>
                 </div>
                 
@@ -246,9 +245,9 @@ const Index = () => {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl">📋</span>
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">Apply Online</h3>
+                  <h3 className="font-semibold text-foreground mb-2">{t('home.applyOnline')}</h3>
                   <p className="text-muted-foreground text-sm">
-                    Submit applications directly through our platform
+                    {t('home.applyDescription')}
                   </p>
                 </div>
                 
@@ -256,9 +255,9 @@ const Index = () => {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl">📊</span>
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">Track Progress</h3>
+                  <h3 className="font-semibold text-foreground mb-2">{t('home.trackProgress')}</h3>
                   <p className="text-muted-foreground text-sm">
-                    Monitor your application status and appointments
+                    {t('home.trackDescription')}
                   </p>
                 </div>
               </div>

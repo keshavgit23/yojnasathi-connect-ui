@@ -2,6 +2,7 @@ import { CheckCircle, Calendar, MapPin, Clock, IndianRupee } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AppointmentDetails {
   schemeName: string;
@@ -18,6 +19,7 @@ interface ConfirmationScreenProps {
 }
 
 const ConfirmationScreen = ({ appointmentDetails, onGoHome }: ConfirmationScreenProps) => {
+  const { t } = useLanguage();
   return (
     <div className="max-w-2xl mx-auto text-center">
       {/* Success Icon */}
@@ -26,10 +28,10 @@ const ConfirmationScreen = ({ appointmentDetails, onGoHome }: ConfirmationScreen
           <CheckCircle className="w-12 h-12 text-green-600" />
         </div>
         <h1 className="text-3xl font-bold text-foreground mb-2">
-          Appointment Confirmed!
+          {t('confirmation.appointmentConfirmed')}
         </h1>
         <p className="text-lg text-muted-foreground">
-          Your appointment has been successfully booked
+          {t('confirmation.successMessage')}
         </p>
       </div>
 
@@ -37,25 +39,25 @@ const ConfirmationScreen = ({ appointmentDetails, onGoHome }: ConfirmationScreen
       <Card className="mb-8">
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-foreground">
-            Appointment Details
+            {t('confirmation.appointmentDetails')}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Scheme Name */}
           <div className="flex items-center justify-between p-3 bg-accent rounded-lg">
-            <span className="text-muted-foreground">Scheme:</span>
+            <span className="text-muted-foreground">{t('appointments.scheme')}:</span>
             <span className="font-medium text-foreground">{appointmentDetails.schemeName}</span>
           </div>
 
           {/* Appointment Type */}
           <div className="flex items-center justify-between p-3 bg-accent rounded-lg">
-            <span className="text-muted-foreground">Type:</span>
+            <span className="text-muted-foreground">{t('appointments.type')}:</span>
             <div className="flex items-center">
               <span className="font-medium text-foreground capitalize mr-2">
-                {appointmentDetails.appointmentType} Appointment
+                {appointmentDetails.appointmentType === "normal" ? t('applyForm.normalAppointment') : t('applyForm.urgentAppointment')}
               </span>
               {appointmentDetails.appointmentType === "urgent" && (
-                <Badge variant="destructive" className="text-xs">Priority</Badge>
+                <Badge variant="destructive" className="text-xs">{t('applyForm.priority')}</Badge>
               )}
             </div>
           </div>
@@ -64,7 +66,7 @@ const ConfirmationScreen = ({ appointmentDetails, onGoHome }: ConfirmationScreen
           <div className="flex items-center justify-between p-3 bg-accent rounded-lg">
             <div className="flex items-center text-muted-foreground">
               <MapPin className="w-4 h-4 mr-1" />
-              <span>Center:</span>
+              <span>{t('appointments.center')}:</span>
             </div>
             <span className="font-medium text-foreground">{appointmentDetails.cscName}</span>
           </div>
@@ -73,7 +75,7 @@ const ConfirmationScreen = ({ appointmentDetails, onGoHome }: ConfirmationScreen
           <div className="flex items-center justify-between p-3 bg-accent rounded-lg">
             <div className="flex items-center text-muted-foreground">
               <Calendar className="w-4 h-4 mr-1" />
-              <span>Date & Time:</span>
+              <span>{t('confirmation.dateTime')}</span>
             </div>
             <span className="font-medium text-foreground">
               {appointmentDetails.date}, {appointmentDetails.time}
@@ -84,7 +86,7 @@ const ConfirmationScreen = ({ appointmentDetails, onGoHome }: ConfirmationScreen
           <div className="flex items-center justify-between p-3 bg-accent rounded-lg">
             <div className="flex items-center text-muted-foreground">
               <IndianRupee className="w-4 h-4 mr-1" />
-              <span>Charges:</span>
+              <span>{t('appointments.charges')}:</span>
             </div>
             <span className="font-medium text-primary text-lg">
               {appointmentDetails.charge}
@@ -100,13 +102,13 @@ const ConfirmationScreen = ({ appointmentDetails, onGoHome }: ConfirmationScreen
             <Clock className="w-5 h-5 text-amber-600 mr-3 mt-0.5" />
             <div className="text-left">
               <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">
-                Important Instructions
+                {t('confirmation.importantInstructions')}
               </h3>
               <ul className="text-sm text-amber-700 dark:text-amber-300 space-y-1">
-                <li>• Please arrive 15 minutes before your appointment time</li>
-                <li>• Carry all required documents and identification</li>
-                <li>• Appointment fee will be collected at the center</li>
-                <li>• You can view this appointment in "My Appointments" section</li>
+                <li>{t('confirmation.arrive15Minutes')}</li>
+                <li>{t('confirmation.carryDocuments')}</li>
+                <li>{t('confirmation.feeAtCenter')}</li>
+                <li>{t('confirmation.viewInAppointments')}</li>
               </ul>
             </div>
           </div>
@@ -119,14 +121,14 @@ const ConfirmationScreen = ({ appointmentDetails, onGoHome }: ConfirmationScreen
           onClick={onGoHome}
           className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3"
         >
-          Go to My Appointments
+          {t('confirmation.goToAppointments')}
         </Button>
         <Button 
           variant="outline" 
           onClick={onGoHome}
           className="w-full"
         >
-          Back to Home
+          {t('confirmation.backToHome')}
         </Button>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { ArrowLeft, Users, IndianRupee, Clock, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Scheme {
   id: string;
@@ -22,6 +23,7 @@ interface SchemeDetailProps {
 }
 
 const SchemeDetail = ({ scheme, onBack, onApply }: SchemeDetailProps) => {
+  const { t } = useLanguage();
   return (
     <div className="max-w-4xl">
       {/* Back Button */}
@@ -31,14 +33,16 @@ const SchemeDetail = ({ scheme, onBack, onApply }: SchemeDetailProps) => {
         className="mb-6 text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to Schemes
+        {t('schemeDetail.backToSchemes')}
       </Button>
 
       {/* Scheme Header */}
       <div className="mb-8">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h1 className="text-3xl font-bold text-foreground mb-2">{scheme.title}</h1>
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              {scheme.schemeKey ? t(scheme.schemeKey) : scheme.title}
+            </h1>
             <Badge 
               variant="secondary" 
               className={`${
@@ -53,7 +57,7 @@ const SchemeDetail = ({ scheme, onBack, onApply }: SchemeDetailProps) => {
                 ) : (
                   <Clock className="w-3 h-3 mr-1" />
                 )}
-                {scheme.status}
+                {scheme.status === "Live" ? t('schemeDetail.live') : t('schemeDetail.over')}
               </div>
             </Badge>
           </div>
@@ -62,7 +66,7 @@ const SchemeDetail = ({ scheme, onBack, onApply }: SchemeDetailProps) => {
               onClick={() => onApply(scheme)}
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-8"
             >
-              Apply Now
+              {t('schemeDetail.applyNow')}
             </Button>
           )}
         </div>
@@ -74,7 +78,7 @@ const SchemeDetail = ({ scheme, onBack, onApply }: SchemeDetailProps) => {
         {/* Category Card */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg font-semibold text-foreground">Category</CardTitle>
+            <CardTitle className="text-lg font-semibold text-foreground">{t('schemeDetail.category')}</CardTitle>
           </CardHeader>
           <CardContent>
             <Badge variant="secondary" className="bg-gov-blue-light text-primary">
