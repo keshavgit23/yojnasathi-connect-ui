@@ -41,7 +41,7 @@ const SchemeDetail = ({ scheme, onBack, onApply }: SchemeDetailProps) => {
         <div className="flex items-start justify-between mb-4">
           <div>
             <h1 className="text-3xl font-bold text-foreground mb-2">
-              {scheme.schemeKey ? t(scheme.schemeKey) : scheme.title}
+              {scheme.title}
             </h1>
             <Badge 
               variant="secondary" 
